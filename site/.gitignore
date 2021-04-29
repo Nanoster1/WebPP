@@ -3,7 +3,6 @@
 *.pot
 *.pyc
 __pycache__
-settings.py
 
 
 # Backup files # 
