@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('App "games" instalation!')
+    return render(request, 'games/index.html', {})
