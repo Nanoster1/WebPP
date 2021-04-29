@@ -12,8 +12,14 @@ class Game(models.Model):
     photo_180x135 = models.ImageField(upload_to='images/games/', width_field=180, height_field=135)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.title
+
 
 class ScoreBorder(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     player = models.IntegerField()
     score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"Player: {self.player} | Scores: {self.score}"
