@@ -186,7 +186,7 @@ Arrows Styles
 	top: 50%;
 	cursor: pointer;
 	background: rgba(255,255,255,0.5);
-	transform: translteY(-50%);
+	transform: translateY(-50%);
 	-webkit-transform:translateY(-50%);
 	-moz-transform:translateY(-50%);
 	-ms-transform:translateY(-50%);
@@ -203,7 +203,7 @@ Arrows Styles
 	font-size: 18px;
 	font-weight: bolder;
 	color: rgba(38,38,38,0.5);
-	transform: translteY(-50%) translateX(-50%);
+	transform: translateY(-50%) translateX(-50%);
 	-webkit-transform:translateY(-50%) translateX(-50%);
 	-moz-transform:translateY(-50%) translateX(-50%);
 	-ms-transform:translateY(-50%) translateX(-50%);
