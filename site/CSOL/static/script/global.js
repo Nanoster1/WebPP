@@ -324,10 +324,10 @@ $(function() {
 		$(this).click();
 	});
 
-	$(".login_block .btn-login").on("click",function(){
+	/*$(".login_block .btn-login").on("click",function(){
 		$(".large-popup.login").slideToggle();
 		return false;
-	});
+	});*/
 
 	$(".be-signup-link").on("click", function(){
 		$(".large-popup.login").slideDown();

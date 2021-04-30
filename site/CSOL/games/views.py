@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return render(request, 'games/index.html', {})
+    return render(request, 'games/index.html', {'title': 'Главная | CSOL', })
