@@ -22,8 +22,6 @@ Basic Swiper Styles
 	direction:ltr;
 	-webkit-backface-visibility:hidden;
 	-moz-backface-visibility:hidden;
-	-ms-backface-visibility:hidden;
-	-o-backface-visibility:hidden;
 	backface-visibility:hidden;
 	/* Fix of Webkit flickering */
 	z-index:1;
@@ -32,7 +30,6 @@ Basic Swiper Styles
 	position:relative;
 	width:100%;
 	height: 100% !important;
-	-webkit-transition-property:-webkit-transform, left, top;
 	-webkit-transition-duration:0s;
 	-webkit-transform:translate3d(0px,0,0);
 	-webkit-transition-timing-function:ease;
