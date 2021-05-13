@@ -1,4 +1,4 @@
-﻿{% load static %}
+﻿
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,7 +12,6 @@
 		<link rel="stylesheet" href="{% static 'games/style/icon.css' %}">
 		<link rel="stylesheet" href="{% static 'games/style/idangerous.swiper.css' %}">
 		<link rel="stylesheet" href="{% static 'games/style/stylesheet.css' %}">
-	    
 	</head>
 	<body>
 
@@ -31,12 +30,14 @@
 					<ul class="header-menu" id="one">
 						<li><a href="#">Игры</a></li>
 						<li><a href="#">Приложения</a></li>
-						<li><a href="#" >Категории</a><i class="fa fa-angle-down"></i>
+						<li><a href="#">Новое</a></li>
+						<li><a href="#">Популярное</a></li>
+						<li><a href="#" >О сайте</a><i class="fa fa-angle-down"></i>
 							<ul style="background-color: #39414E">
-								<li><a href="#">Стратегии</a></li>
-								<li><a href="#">Аркады</a></li>
-								<li><a href="#">Шутеры</a></li>
-								<li><a href="#">Симулятор</a></li>
+								<li><a href="#">О нас</a></li>
+								<li><a href="#">Обновления</a></li>
+								<li><a href="#">Контакты</a></li>
+								<li><a href="#">Разработчикам</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -52,9 +53,93 @@
 	</header>
 	
 	<!-- MAIN CONTENT -->
-	{% block content %}
-	{% endblock %}
+	<div id="content-block">
+		<div class="container-fluid custom-container">
+			<div class="row">
+				<div class="col-md-2 left-feild">
+					<form action="./" class="input-search">
+						<input type="text" required="" placeholder="Поиск">
+							<i class="fa fa-search"></i>
+							<input type="submit" value="">
+					</form>
+				</div>
+				<div class="col-md-10 ">
+					<div class="for-be-dropdowns">
+						<div class="be-drop-down">
+							<i class="icon-projects"></i>
+							<span class="be-dropdown-content"> Projects	</span>
+							<ul class="drop-down-list">
+								<li><a>Item - 1</a></li>
+								<li><a>Item - 2</a></li>
+								<li><a>Item - 3</a></li>
+							</ul>
+						</div>
+						<div class="be-drop-down">
+							<i class="icon-creative"></i>
+							<span class="be-dropdown-content">All Creative Filds
+							</span>
+							<ul class="drop-down-list">
+								<li><a>Item - 1</a></li>
+								<li><a>Item - 2</a></li>
+								<li><a>Item - 3</a></li>
+							</ul>
+						</div>
+						<div class="be-drop-down">
+							<i class="icon-features"></i>
+							<span class="be-dropdown-content">Features
+							</span>
+							<ul class="drop-down-list">
+								<li><a>Featured</a></li>
+								<li><a>Most Appreciated</a></li>
+								<li><a>Most Viewed</a></li>
+								<li><a>Most Discussed</a></li>
+								<li><a>Most Recent</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid custom-container">
+			<div class="row">
+				<div class="col-md-2 left-feild">
+						<div class="be-vidget">
+							<h3 class="letf-menu-article">Категории</h3>
+							<div class="creative_filds_block">
+								<div class="ul">
+									<a href="blog-detail-2.html">Шутеры		        </a>
+									<a href="blog-detail-2.html">Стратегии		    </a>
+									<a href="blog-detail-2.html">Симуляторы	        </a>
+									<a href="blog-detail-2.html">Гонки		        </a>
+									<a href="blog-detail-2.html">Драки		        </a>
+								</div>
+							</div>
+						</div>
+						<div class="be-vidget">
+							<h3 class="letf-menu-article">Теги</h3>
+							<div class="tags_block clearfix">
+								<ul>
+									<li><a href="blog-detail-2.html">HTML5</a></li>
+									<li><a href="blog-detail-2.html">Unity</a></li>
+									<li><a href="blog-detail-2.html">Мобильные</a></li>
+									<li><a href="blog-detail-2.html">Для мальчиков</a></li>
+									<li><a href="blog-detail-2.html">Для девочек</a></li>
+									<li><a href="blog-detail-2.html">18+</a></li>
+									<li><a href="blog-detail-2.html">От CSOL</a></li>
+								</ul>
+							</div>
+						</div>
+				</div>
 
+				<div class="col-md-10">
+					<div class="row _post-container_">
+						{% block content %}
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- THE FOOTER -->
 	<footer>
 		<div class="footer-main">
@@ -100,18 +185,18 @@
 					<div class="col-md-3 galerry">
 						<div class="footer-block">					
 							<h1 class="footer-title">Recent Works</h1>
-							<a href="blog-detail-2.html"><img src="img/g1.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g2.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g3.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g4.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g5.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g6.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g7.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g8.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g9.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g10.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g11.jpg" alt=""></a>
-							<a href="blog-detail-2.html"><img src="img/g12.jpg" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g1.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g2.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g3.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g4.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g5.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g6.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g7.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g8.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g9.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g10.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g11.jpg' %}" alt=""></a>
+							<a href="blog-detail-2.html"><img src="{% static 'games/img/g12.jpg' %}" alt=""></a>
 						</div>
 					</div>
 					<div class="col-md-3">
