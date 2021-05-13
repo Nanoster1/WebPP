@@ -207,6 +207,10 @@ Arrows Styles
 	-webkit-transform:translateY(-50%) translateX(-50%);
 	-moz-transform:translateY(-50%) translateX(-50%);
 	-ms-transform:translateY(-50%) translateX(-50%);
+	-webkit-transition:ease-out 0.15s all;
+	-moz-transition:ease-out 0.15s all;
+	-o-transition:ease-out 0.15s all;
+	transition: ease-out 0.15s all;
 }
 .swiper-arrow-left:hover:after, .swiper-arrow-right:hover:after{
 	color: #262626;

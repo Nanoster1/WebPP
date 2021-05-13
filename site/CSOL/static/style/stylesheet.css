@@ -99,6 +99,8 @@ header .row-header .brand-be { margin-top: 16.5px; float: left; }
 
 header .row-header .header-menu-block { position: absolute; top: 0; left: 15%; -webkit-transform: translateX(-20%); -ms-transform: translateX(-20%); transform: translateX(-20%); }
 
+img.be_logo { text-align: left; }
+
 .header-menu > li { display: inline-block; padding: 0 16px; position: relative; }
 
 .header-menu > li > a { color: #fff; }
@@ -757,8 +759,8 @@ span.right { float: right; }
   footer .soc_buttons { margin-bottom: 15px; }
   footer .galerry { margin-bottom: 15px; }
   footer .soc-activity { margin-bottom: 20px; }
-  .footer-block { margin-bottom: 5%; }
-  .footer-main div[class^="col-"]:last-child .footer-block { margin-bottom: auto; }
+  .footer-block { margin-bottom: 20px; }
+  .footer-main div[class^="col-"]:last-child .footer-block { margin-bottom: 0px; }
   .footer-bottom .left, .footer-bottom .right { float: none; }
   .footer-end .left { margin-bottom: 15px; }
   .footer-end .right .btn { margin-left: 0px; margin-right: 10px; margin-bottom: 10px; } }
@@ -2080,7 +2082,7 @@ a, .soc_buttons.light > li, .color_bg, .be-ava-user > img, .be-drop-down, .foote
   .col-xl-5 { width: 41.66666667%; }
   .col-xl-4 { width: 33.33333333%; }
   .col-xl-3 { width: 25%; }
-  .col-xl-2 { width: 10%; }
+  .col-xl-2 { width: 16.66666667%; }
   .col-xl-1 { width: 8.33333333%; }
   .col-xl-pull-12 { right: 100%; }
   .col-xl-pull-11 { right: 91.66666667%; }
