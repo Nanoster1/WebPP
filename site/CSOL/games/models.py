@@ -31,7 +31,7 @@ class TagsGame(models.Model):
 
 
 class Game(models.Model):
-    VALID_RESOLUTION = (512, 512)
+    VALID_RESOLUTION = (180, 135)
     MAX_IMAGE_SIZE = 3145728
 
     category = models.ForeignKey(CategoryGame, verbose_name='Категория', on_delete=models.CASCADE)
