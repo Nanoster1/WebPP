@@ -1,3 +1,4 @@
+from PIL import Image
 from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -6,6 +7,10 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 fs = FileSystemStorage(location=settings.STATIC_ROOT)
+
+
+class InvalidResolutionErrorException(Exception):
+    pass
 
 
 class CategoryGame(models.Model):
@@ -25,6 +30,9 @@ class TagsGame(models.Model):
 
 
 class Game(models.Model):
+    VALID_RESOLUTION = (512, 512)
+    MAX_IMAGE_SIZE = 3145728
+
     category = models.ForeignKey(CategoryGame, verbose_name='Категория', on_delete=models.CASCADE)
     tags = models.ManyToManyField(TagsGame, verbose_name='Теги', blank=True)
     title = models.CharField(max_length=64, verbose_name='Название')
@@ -46,6 +54,14 @@ class Game(models.Model):
     def image_url(self):
         return '/' + self.image.url
 
+    def save(self, *args, **kwargs):
+        image = self.image
+        img = Image.open(image)
+        width_size, height_size = self.VALID_RESOLUTION
+        if img.height != height_size or img.width != width_size:
+            raise InvalidResolutionErrorException('Разрешение изображения не допустимо!')
+        super().save(*args, **kwargs)
+
 
 # class ScoreBorder(models.Model):
 #     game = models.ForeignKey(Game, on_delete=models.CASCADE)
@@ -65,6 +81,9 @@ class CreatorGame(models.Model):
 
 
 class CreatorCompany(models.Model):
+    VALID_RESOLUTION = (512, 512)
+    MAX_IMAGE_SIZE = 3145728
+
     name = models.CharField(max_length=64, verbose_name='Название компании')
     owner = models.ForeignKey(CreatorGame, verbose_name='Руководитель', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='static/games/images/company', storage=fs, verbose_name='Логотип')
@@ -73,3 +92,11 @@ class CreatorCompany(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        image = self.image
+        img = Image.open(image)
+        width_size, height_size = self.VALID_RESOLUTION
+        if img.height != height_size or img.width != width_size:
+            raise InvalidResolutionErrorException('Разрешение изображения не допустимо!')
+        super().save(*args, **kwargs)
