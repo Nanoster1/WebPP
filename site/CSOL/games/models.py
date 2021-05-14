@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 User = get_user_model()
 
