@@ -1,7 +1,6 @@
 {% extends 'base_login.html' %}
 
 {% block content %}
-<form class="login100-form validate-form">
 	<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
 		<input class="input100" type="text" name="username">
 		<span class="focus-input100" data-placeholder="Логин"></span>
@@ -10,13 +9,11 @@
 		<input class="input100" type="password" name="pass">
 		<span class="focus-input100" data-placeholder="Пароль"></span>
 	</div>
-
 	<div class="container-login100-form-btn">
 		<button class="login100-form-btn">
 			Войти
 		</button>
 	</div>
-
 	<ul class="login-more p-t-30">
 		<li class="m-b-8">
 			<span class="txt1">
@@ -38,5 +35,4 @@
 			</a>
 		</li>
 	</ul>
-</form>
 {% endblock %}

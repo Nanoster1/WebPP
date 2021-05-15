@@ -138,17 +138,13 @@ iframe {
   display: -webkit-flex;
   display: -moz-box;
   display: -ms-flexbox;
-  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
-  background: #fff;  
 }
 
 .wrap-login100 {
   width: 390px;
-  background: #fff;
 }
 
 
