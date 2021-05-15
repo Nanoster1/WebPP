@@ -6,6 +6,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+
 
 def login(request):
     template = 'registration/login.html'
@@ -37,6 +40,7 @@ def register(request):
 
     if request.method == 'POST':
         _username = request.POST['username']
+        _email = request.POST['email']
         _password1 = request.POST['password1']
         _password2 = request.POST['password2']
 
@@ -45,10 +49,9 @@ def register(request):
         elif _password1 != _password2:
             _message = 'Неправильно введен повторный пароль!'
         else:
-            # Create the user:
             user = User.objects.create_user(
                 username=_username,
-                email=None,
+                email=_email,
                 password=_password1,
             )
             user.save()
