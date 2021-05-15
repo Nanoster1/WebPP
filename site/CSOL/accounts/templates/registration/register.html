@@ -1,0 +1,31 @@
+{% extends 'base_login.html' %}
+
+{% block content %}
+<form action="{% url 'accounts:register' %}" method="post" id="register-form">{% csrf_token %}
+    {% if message %}
+		<h2 class="form-signin-heading">{{ message }}</h2>
+	{% endif %}
+    <div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+        <input class="input100" type="text" name="username" id="id_username">
+        <span class="focus-input100" data-placeholder="Введите имя пользователя"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+        <input class="input100" type="password" name="password1" id="id_password1">
+        <span class="focus-input100" data-placeholder="Введите пароль"></span>
+    </div>
+
+    <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+        <input class="input100" type="password" name="password2" id="id_password2">
+        <span class="focus-input100" data-placeholder="Повторите пароль"></span>
+    </div>
+
+    <div class="container-login100-form-btn">
+        <button class="login100-form-btn">
+            Зарегистрироваться
+        </button>
+    </div>
+</form>
+
+{% endblock %}
+
