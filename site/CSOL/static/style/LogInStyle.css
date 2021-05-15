@@ -2,10 +2,19 @@
 {
     text-align: center;
 }
+.Main-div-center
+{
+    margin:15% 25%  25%;
+    width:50%;
+}
+.img-center
+{
+    max-width: 100px;
+}
 .div-center
 {
-    margin:10% 25%  25%;
-    width:50%;
+    display:block;
+    margin:auto;
 }
 body {
     background-size: cover;
