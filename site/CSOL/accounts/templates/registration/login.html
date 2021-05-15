@@ -3,12 +3,12 @@
 {% block content %}
 <form action="{% url 'accounts:login' %}" method="post" id="login-form">{% csrf_token %}
 	{% if message %}
-		<h2 class="form-signin-heading">{{ message }}</h2>
+		<p class="errorMessege fs-20 m-t-5">{{ message }}</p>
 	{% endif %}
-	<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+	<div class="wrap-input100 validate-input m-t-45 m-b-35" data-validate = "Enter username">
 		<input class="input100" type="text" name="username" id="id_username">
 		<span class="focus-input100" data-placeholder="Логин"></span>
-	</div>
+	</div>*
 	<div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
 		<input class="input100" type="password" name="password" id="id_password">
 		<span class="focus-input100" data-placeholder="Пароль"></span>
@@ -32,7 +32,7 @@
 		<li>
 			<span class="txt1">
 				Нет аккаунта?
-			</span>#
+			</span>
 
 			<a href="{% url 'accounts:register' %}" class="txt2">
 				Создать аккаунт

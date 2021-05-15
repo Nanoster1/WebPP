@@ -21,9 +21,9 @@ def login(request):
                 auth_login(request, user)
                 return HttpResponseRedirect(reverse('home'))
             else:
-                _message = 'Your account is not activated'
+                _message = 'Ваш аккаунт не активирован!'
         else:
-            _message = 'Invalid login, please try again.'
+            _message = 'Неправильно введен логин или пароль.'
     context = {'message': _message,
                'title': _title}
     return render(request, template, context)
@@ -41,9 +41,9 @@ def register(request):
         _password2 = request.POST['password2']
 
         if User.objects.filter(username=_username).exists():
-            _message = 'Username already exists.'
+            _message = 'Такой пользователь уже существует!'
         elif _password1 != _password2:
-            _message = 'Passwords do not match.'
+            _message = 'Неправильно введен повторный пароль!'
         else:
             # Create the user:
             user = User.objects.create_user(
