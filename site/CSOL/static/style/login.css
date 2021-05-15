@@ -119,7 +119,7 @@ iframe {
 .txt2 {
   font-family: Poppins-Regular;
   font-size: 15px;
-  color: #57b846;
+  color: #ff730085;
   line-height: 1.5;
 }
 
@@ -210,7 +210,7 @@ iframe {
   -moz-transition: all 0.4s;
   transition: all 0.4s;
 
-  background: #57b846;
+  background: #ff730085;
 }
 
 .focus-input100::after {
@@ -231,20 +231,11 @@ iframe {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
-}
-
-.input100:focus + .focus-input100::after {
   top: -20px;
   font-size: 15px;
 }
-
 .input100:focus + .focus-input100::before {
   width: 100%;
-}
-
-.has-val.input100 + .focus-input100::after {
-  top: -20px;
-  font-size: 15px;
 }
 
 .has-val.input100 + .focus-input100::before {
@@ -282,7 +273,7 @@ iframe {
   padding: 0 20px;
   width: 100%;
   height: 50px;
-  background-color: #070508fd;
+  background-color: #07050800;
   border-radius: 25px;
 
   box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.212);
