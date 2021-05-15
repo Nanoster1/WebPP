@@ -7,7 +7,22 @@
     margin:10% 25%  25%;
     width:50%;
 }
-.head
+.backgroud-Window
 {
-    
+    background-size: cover;
+    width:  100%;
+}
+.bgvideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -9999;
+}
+.backgroud-div
+{
+    background: white;
 }

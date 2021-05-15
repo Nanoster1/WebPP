@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="LogInStyle.css">
         {% load static %}
         <link rel="stylesheet" href="{% static 'style/LogInStyle.css' %}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Django Authentication Example</title>
     </head>
-    <body>
-    <div>
+    <body class="backgroud-Window">
+    <video autoplay loop muted class="bgvideo" id="bgvideo" poster="{% static 'style/background.jpg' %}">
+        <source src="{% static 'style/background.mp4' %}" type="video/mp4">
+        <source src="{% static 'style/background.webm' %}" type="video/webm">
+    </video>
+    <div class="backgroud-div">
         <h1 class="text-p">{% block name_page %}{% endblock %}</h1>
         <div class="div-center">
             {% block title-content %}
