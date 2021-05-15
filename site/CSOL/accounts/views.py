@@ -1,5 +1,7 @@
 from django.contrib.auth import (login as auth_login, authenticate)
+from django.contrib.auth import logout as user_logout
 from django.contrib.auth.models import User
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -9,6 +11,7 @@ def login(request):
     template = 'registration/login.html'
 
     _message = None
+    _title = 'Авторизация | CSOL'
     if request.method == 'POST':
         _username = request.POST['username']
         _password = request.POST['password']
@@ -21,7 +24,8 @@ def login(request):
                 _message = 'Your account is not activated'
         else:
             _message = 'Invalid login, please try again.'
-    context = {'message': _message}
+    context = {'message': _message,
+               'title': _title}
     return render(request, template, context)
 
 
@@ -29,6 +33,7 @@ def register(request):
     template = 'registration/register.html'
 
     _message = None
+    _title = 'Регистрация | CSOL'
 
     if request.method == 'POST':
         _username = request.POST['username']
@@ -50,5 +55,11 @@ def register(request):
 
             return HttpResponseRedirect(reverse('accounts:login'))
 
-    context = {'message': _message}
+    context = {'message': _message,
+               'title': _title}
     return render(request, template, context)
+
+
+def logout(request):
+    user_logout(request)
+    return HttpResponseRedirect(reverse('home'))
