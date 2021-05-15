@@ -22,30 +22,12 @@
 		{% block script %}
 		{% endblock %}
 	</head>
-	<body>
+	<body {% if user.is_authenticated %}class="page-login"{% endif %}>
 		<header>
 			<div class="container-fluid custom-container">
 				<div class="row no_row row-header">
 					<div class="brand-be">
 						<a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="logo" class="be_logo"></a>
-					</div>
-					<div class="header-menu-block">
-						<button class="cmn-toggle-switch cmn-toggle-switch__htx">
-							<span></span>
-						</button>
-						<ul class="header-menu" id="one">
-							<li><a href="{% url 'games:index' %}">Игры</a></li>
-							<li><a href="#">Приложения</a></li>
-							<li><a href="#">Новое</a></li>
-							<li><a href="#">Популярное</a></li>
-							<li><a href="#" >О сайте</a><i class="fa fa-angle-down"></i>
-								<ul style="background-color: #39414E">
-									<li><a href="#">Обновления</a></li>
-									<li><a href="#">Контакты</a></li>
-									<li><a href="#">Разработчикам</a></li>
-								</ul>
-							</li>
-						</ul>
 					</div>
 					<div class="login-header-block">
 						<div class="login_block">
@@ -65,6 +47,24 @@
 								<a class="btn-login btn color-1 size-2 hover-2" href="{% url 'accounts:login' %}"><i class="fa fa-user"></i>Войти</a>
 							{% endif %}
 						</div>
+					</div>
+					<div class="header-menu-block">
+						<button class="cmn-toggle-switch cmn-toggle-switch__htx">
+							<span></span>
+						</button>
+						<ul class="header-menu" id="one">
+							<li><a href="{% url 'games:index' %}">Игры</a></li>
+							<li><a href="#">Приложения</a></li>
+							<li><a href="#">Новое</a></li>
+							<li><a href="#">Популярное</a></li>
+							<li><a href="#" >О сайте</a><i class="fa fa-angle-down"></i>
+								<ul style="background-color: #39414E">
+									<li><a href="#">Обновления</a></li>
+									<li><a href="#">Контакты</a></li>
+									<li><a href="#">Разработчикам</a></li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
