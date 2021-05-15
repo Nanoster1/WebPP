@@ -10,6 +10,11 @@
     <div>
         <h1 class="text-p">{% block name_page %}{% endblock %}</h1>
         <div class="div-center">
+            {% block title-content %}
+            {% endblock %}
+            <div>
+                <img src="{% static 'img/logo.png'%}">
+            </div>
             {% block content %}
             {% endblock %}
         </div>
