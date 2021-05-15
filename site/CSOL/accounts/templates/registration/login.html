@@ -1,5 +1,7 @@
 {% extends  "base_login.html" %}
 
+{% block name_page %}Авторизация{% endblock %}
+
 {% block content %}
 
 {% if form.errors %}
@@ -14,7 +16,6 @@
   {% endif %}
 {% endif %}
 
-<h2>Авторизация</h2>
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 <tablle>
