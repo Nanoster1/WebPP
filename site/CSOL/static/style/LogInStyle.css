@@ -13,13 +13,16 @@
 }
 .div-center
 {
-    display:block;
     margin: auto;
 }
-body {
+body
+{
     background-size: cover;
 }
-
+.max-size
+{
+    width: 100%;
+}
 .bgvideo {
     position: fixed;
     right: 0;
