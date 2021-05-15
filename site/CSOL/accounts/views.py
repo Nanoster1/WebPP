@@ -6,9 +6,6 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
-
 
 def login(request):
     template = 'registration/login.html'

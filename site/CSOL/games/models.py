@@ -38,7 +38,7 @@ class Game(models.Model):
     tags = models.ManyToManyField(TagsGame, verbose_name='Теги', blank=True)
     title = models.CharField(max_length=64, verbose_name='Название')
     slug = models.SlugField(unique=True, blank=True)
-    image = models.ImageField(upload_to='static/games/images', storage=fs, verbose_name='Иконка')
+    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     iframe = models.URLField(verbose_name='Ссылка на IFrame')
     is_release = models.BooleanField(default=False, verbose_name='Публичный доступ')
@@ -87,7 +87,7 @@ class CreatorCompany(models.Model):
 
     name = models.CharField(max_length=64, verbose_name='Название компании')
     owner = models.ForeignKey(CreatorGame, verbose_name='Руководитель', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/games/images/company', storage=fs, verbose_name='Логотип')
+    image = models.ImageField(upload_to='games/company', storage=fs, verbose_name='Логотип')
     slug = models.SlugField(unique=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
 
