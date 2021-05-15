@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <br> <!-- УСТРАНИТЬ -->
@@ -81,7 +82,22 @@
 
         <div class="col-md-10">
             <div class="row _post-container_">
-                <p>ПУСТО НАХУЙ</p>
+                {% for game in games_list %}
+                    <div class="custom-column-5">
+                        <div class="be-post">
+                            <a href="{% url 'games:game_detail' slug=game.slug %}" class="be-img-block">
+                            <img src="/{{ game.image }}" alt="omg">
+                            </a>
+                            <a href="{% url 'games:game_detail' slug=game.slug %}" class="be-post-title">{{ game.title }}</a>
+
+                            <div class="author-post">
+                                <img src="{% static 'favicon.svg' %}" alt="" class="ava-author">
+                                <span>by <a href="{% url 'games:game_detail' slug=game.slug %}">{{ game.author }}</a></span>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

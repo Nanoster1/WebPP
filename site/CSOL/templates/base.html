@@ -49,7 +49,21 @@
 					</div>
 					<div class="login-header-block">
 						<div class="login_block">
-							<a class="btn-login btn color-1 size-2 hover-2" href="{% url 'login' %}"><i class="fa fa-user"></i>Войти</a>
+							{% if user.is_authenticated %}
+								<a class="btn color-1 size-2 hover-2" href="{% url 'admin:index' %}">Админ панель</a>
+								<div class="be-drop-down login-user-down">
+									<img class="login-user" src="{% static 'favicon.svg' %}" alt="" width="40">
+									<span class="be-dropdown-content">{{ user.username }}</span>
+									<ul class="drop-down-list">
+										<li><a href="#">Мой профиль</a></li>
+										<li><a href="#">Сообщения</a></li>
+										<li><a href="#">Друзья</a></li>
+										<li><a href="#">Избранное</a></li>
+									</ul>
+								</div>
+							{% else %}
+								<a class="btn-login btn color-1 size-2 hover-2" href="{% url 'login' %}"><i class="fa fa-user"></i>Войти</a>
+							{% endif %}
 						</div>
 					</div>
 				</div>
