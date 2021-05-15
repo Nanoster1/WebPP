@@ -48,7 +48,7 @@ def register(request):
             )
             user.save()
 
-            return HttpResponseRedirect(reverse('accounts:*login'))
+            return HttpResponseRedirect(reverse('accounts:login'))
 
     context = {'message': _message}
     return render(request, template, context)
