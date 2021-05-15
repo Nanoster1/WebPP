@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="{% static 'favicon.svg' %}">
 
+		<link rel="stylesheet" href="{% static 'style/canvastyle.css' %}">
 		<link rel="stylesheet" href="{% static 'style/bootstrap.min.css' %}">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="{% static 'style/icon.css' %}">
@@ -22,12 +23,32 @@
 		{% block script %}
 		{% endblock %}
 	</head>
-	<body>
+	<body {% if user.is_authenticated %}class="page-login"{% endif %}>
 		<header>
 			<div class="container-fluid custom-container">
 				<div class="row no_row row-header">
 					<div class="brand-be">
 						<a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="logo" class="be_logo"></a>
+					</div>
+					<div class="login-header-block">
+						<div class="login_block">
+							{% if user.is_authenticated %}
+								<a class="btn color-1 size-2 hover-2" href="{% url 'admin:index' %}">Админ панель</a>
+								<div class="be-drop-down login-user-down">
+									<img class="login-user" src="{% static 'favicon.svg' %}" alt="" width="40">
+									<span class="be-dropdown-content">{{ user.username }}</span>
+									<ul class="drop-down-list">
+										<li><a href="#">Профиль</a></li>
+										<li><a href="#">Сообщения</a></li>
+										<li><a href="#">Друзья</a></li>
+										<li><a href="#">Избранное</a></li>
+										<li><a href="{% url 'accounts:logout' %}">Выйти</a></li>
+									</ul>
+								</div>
+							{% else %}
+								<a class="btn-login btn color-1 size-2 hover-2" href="{% url 'accounts:login' %}"><i class="fa fa-user"></i>Войти</a>
+							{% endif %}
+						</div>
 					</div>
 					<div class="header-menu-block">
 						<button class="cmn-toggle-switch cmn-toggle-switch__htx">
@@ -46,25 +67,6 @@
 								</ul>
 							</li>
 						</ul>
-					</div>
-					<div class="login-header-block">
-						<div class="login_block">
-							{% if user.is_authenticated %}
-								<a class="btn color-1 size-2 hover-2" href="{% url 'admin:index' %}">Админ панель</a>
-								<div class="be-drop-down login-user-down">
-									<img class="login-user" src="{% static 'favicon.svg' %}" alt="" width="40">
-									<span class="be-dropdown-content">{{ user.username }}</span>
-									<ul class="drop-down-list">
-										<li><a href="#">Мой профиль</a></li>
-										<li><a href="#">Сообщения</a></li>
-										<li><a href="#">Друзья</a></li>
-										<li><a href="#">Избранное</a></li>
-									</ul>
-								</div>
-							{% else %}
-								<a class="btn-login btn color-1 size-2 hover-2" href="{% url 'login' %}"><i class="fa fa-user"></i>Войти</a>
-							{% endif %}
-						</div>
 					</div>
 				</div>
 			</div>
