@@ -42,13 +42,14 @@ html {
 }
 
 .header-image {
+    width: auto;
     left: 0;
     position: absolute;
     top: 0;
     z-index: -1;
     height: auto;
-    -webkit-animation: zoomEffect 35s infinite;
-    animation: zoomEffect 35s infinite;
+    -webkit-animation: zoomEffect 20s linear;
+    animation: zoomEffect 20s infinite;
     -webkit-animation-timing-function: linear;
     animation-timing-function: linear;
     -webkit-animation-direction: alternate;
@@ -63,8 +64,8 @@ html {
         transform: scale(1) translateX(0);
     }
     100% {
-        -webkit-transform: scale(1.2) translateX(-360px) translateY(-80px);
-        transform: scale(1.2) translateX(-360px) translateY(-80px);
+        -webkit-transform: scale(1.2) translateX(-120px) translateY(-50px);
+        transform: scale(1.2) translateX(-120px) translateY(-50px);
     }
 }
 
@@ -74,8 +75,8 @@ html {
         transform: scale(1) translateX(0) translateY(0);
     }
     100% {
-        -webkit-transform: scale(1.2) translateX(-360px) translateY(-80px);
-        transform: scale(1.2) translateX(-360px) translateY(-80px);
+        -webkit-transform: scale(1.2) translateX(-120px) translateY(-50px);
+        transform: scale(1.2) translateX(-120px) translateY(-50px);
     }
 }
 
