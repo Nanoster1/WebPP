@@ -57,7 +57,25 @@ html {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
-
+.find-friend {
+    width: 90%;
+    background: transparent;
+}
+.header-icon {
+    background: transparent;
+    color: whitesmoke;
+    width: 10%;
+    height: 10%;
+}
+menu-item {
+    background: #333;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    z-index: 3;
+    top: 0;
+    position: relative;
+}
 @-webkit-keyframes zoomEffect {
     0% {
         -webkit-transform: scale(1) translateX(0);
@@ -147,6 +165,7 @@ html {
     margin: -90px 0 20px;
     position: relative;
     z-index: 2;
+    top:0;
 }
 
 .body-action-button {
