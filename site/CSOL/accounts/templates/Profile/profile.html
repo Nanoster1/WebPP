@@ -10,10 +10,10 @@
     <div class="header-container">
         <img src="{% static 'bacground.png' %}" alt="" class="header-image" />
         <div class="header">
-            <button fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="header-icon">
+            <input type="button" id="AddFriendBTN" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="header-icon">
                 Добавить друга
-            </button>
-            <div class="menu-item">
+            </input>
+            <div class="menu-item" id="block-list" hidden>
                 <input class="find-friend">
             </div>
             <h1 class="main-heading">{{ Name }}</h1>
