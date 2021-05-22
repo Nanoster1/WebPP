@@ -23,7 +23,6 @@
                 <span class="stat-module">
           Hours on the site <span class="stat-number">{{Hourse}}</span>
         </span>
-                <span class="stat-module">
             </div>
         </div> <!-- END header -->
     </div>
@@ -47,9 +46,9 @@
         </svg>
       </span>
             <ul class="card-list">
-                <li><img src="https://s12.postimg.cc/c0ryp65lp/m1f.jpg" alt="" /></li>
-                <li><img src="https://s14.postimg.cc/6ts0it3xt/m2f.jpg" alt="" /></li>
-                <li><img src="https://s13.postimg.cc/ri499o2zr/m3f.jpg" alt="" /></li>
+                {% for pic in some_list %}
+                    <li><img src="{{ pic }}" alt="" /></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
