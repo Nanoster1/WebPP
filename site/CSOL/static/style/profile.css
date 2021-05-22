@@ -206,7 +206,12 @@ html {
     margin-right: 2px;
     width: 6px;
 }
-
+.header-icon {
+    background: transparent;
+    color: whitesmoke;
+    width: 10%;
+    height: 10%;
+}
 .card {
     border-radius: 2px;
     box-shadow: 0 0 5px rgba(0, 0, 0, .15);
