@@ -7,6 +7,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=32, blank=True, null=True, verbose_name='Никнейм')
     date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
     photo = models.ImageField(upload_to='users/', blank=True, verbose_name='Фотография')
     site = models.URLField(blank=True, null=True, verbose_name='Личный сайт')

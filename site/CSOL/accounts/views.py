@@ -10,8 +10,8 @@ from django.urls import reverse
 def login(request):
     template = 'registration/login.html'
 
-    _message = None
-    _title = 'Авторизация | CSOL'
+    message = None
+    title = 'Авторизация | CSOL'
     if request.method == 'POST':
         _username = request.POST['username']
         _password = request.POST['password']
@@ -21,19 +21,19 @@ def login(request):
                 auth_login(request, user)
                 return HttpResponseRedirect(reverse('home'))
             else:
-                _message = 'Ваш аккаунт не активирован!'
+                message = 'Ваш аккаунт не активирован!'
         else:
-            _message = 'Неправильно введен логин или пароль.'
-    context = {'message': _message,
-               'title': _title}
+            message = 'Неправильно введен логин или пароль.'
+    context = {'message': message,
+               'title': title}
     return render(request, template, context)
 
 
 def register(request):
     template = 'registration/register.html'
 
-    _message = None
-    _title = 'Регистрация | CSOL'
+    message = None
+    title = 'Регистрация | CSOL'
 
     if request.method == 'POST':
         _username = request.POST['username']
@@ -41,10 +41,12 @@ def register(request):
         _password1 = request.POST['password1']
         _password2 = request.POST['password2']
 
-        if User.objects.filter(username=_username).exists():
-            _message = 'Такой пользователь уже существует!'
+        if not (_username and _email and _password2 and _password1):
+            message = 'Заполните все поля!'
+        elif User.objects.filter(username=_username).exists():
+            message = 'Такой пользователь уже существует!'
         elif _password1 != _password2:
-            _message = 'Неправильно введен повторный пароль!'
+            message = 'Неправильно введен повторный пароль!'
         else:
             user = User.objects.create_user(
                 username=_username,
@@ -55,8 +57,8 @@ def register(request):
 
             return HttpResponseRedirect(reverse('accounts:login'))
 
-    context = {'message': _message,
-               'title': _title}
+    context = {'message': message,
+               'title': title}
     return render(request, template, context)
 
 

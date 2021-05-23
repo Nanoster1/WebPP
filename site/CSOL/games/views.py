@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView
 
-from .models import Game
+from .models import Game, CategoryGame
 
 
 class GameDetailView(DetailView):
@@ -22,5 +22,26 @@ class GameListViews(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        categories = CategoryGame.objects.all()
         context['title'] = 'CSOL - Играй бесплатно!'
+        context['categories'] = categories
         return context
+
+
+class GameCategoryListViews(GameListViews):
+    model = CategoryGame
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = CategoryGame.objects.get(slug=self.kwargs['slug'])
+        context['title'] = 'Категория:  {} | CSOL - Играй бесплатно!'.format(name)
+        return context
+
+    def get_queryset(self):
+        return Game.objects.filter(category__slug=self.kwargs['slug'])
+
+
+class GameNewListViews(GameListViews):
+
+    def get_queryset(self):
+        return Game.objects.all().order_by('-date_added')

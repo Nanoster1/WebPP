@@ -14,15 +14,15 @@ class GameAdminForm(ModelForm):
             *Game.VALID_RESOLUTION
         )
 
-    def clean_image(self):
-        image = self.cleaned_data['image']
-        img = Image.open(image)
-        width_size, height_size = Game.VALID_RESOLUTION
-        if image.size > Game.MAX_IMAGE_SIZE:
-            raise ValidationError('Размер изображения не должен превышать 3MB!')
-        if img.height != height_size or img.width != width_size:
-            raise ValidationError('Разрешение изображения не допустимо!')
-        return image
+    # def clean_image(self):
+    #     image = self.cleaned_data['image']
+    #     img = Image.open(image)
+    #     width_size, height_size = Game.VALID_RESOLUTION
+    #     if image.size > Game.MAX_IMAGE_SIZE:
+    #         raise ValidationError('Размер изображения не должен превышать 3MB!')
+    #     if img.height != height_size or img.width != width_size:
+    #         raise ValidationError('Разрешение изображения не допустимо!')
+    #     return image
 
 
 class GameAdmin(admin.ModelAdmin):
@@ -37,15 +37,15 @@ class CreatorCompanyAdminForm(ModelForm):
             *CreatorCompany.VALID_RESOLUTION
         )
 
-    def clean_image(self):
-        image = self.cleaned_data['image']
-        img = Image.open(image)
-        width_size, height_size = CreatorCompany.VALID_RESOLUTION
-        if image.size > CreatorCompany.MAX_IMAGE_SIZE:
-            raise ValidationError('Размер изображения не должен превышать 3MB!')
-        if img.height != height_size or img.width != width_size:
-            raise ValidationError('Разрешение изображения не допустимо!')
-        return image
+    # def clean_image(self):
+    #     image = self.cleaned_data['image']
+    #     img = Image.open(image)
+    #     width_size, height_size = CreatorCompany.VALID_RESOLUTION
+    #     if image.size > CreatorCompany.MAX_IMAGE_SIZE:
+    #         raise ValidationError('Размер изображения не должен превышать 3MB!')
+    #     if img.height != height_size or img.width != width_size:
+    #         raise ValidationError('Разрешение изображения не допустимо!')
+    #     return image
 
 
 class CreatorCompanyAdmin(admin.ModelAdmin):

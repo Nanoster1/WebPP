@@ -7,7 +7,7 @@ from django.urls import reverse
 
 User = get_user_model()
 
-fs = FileSystemStorage(location=settings.STATIC_ROOT)
+fs = FileSystemStorage(location=settings.MEDIA_ROOT)
 
 
 class InvalidResolutionErrorException(Exception):
@@ -20,6 +20,9 @@ class CategoryGame(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('games:game_category', args=[self.slug])
 
 
 class TagsGame(models.Model):
@@ -37,13 +40,14 @@ class Game(models.Model):
     category = models.ForeignKey(CategoryGame, verbose_name='Категория', on_delete=models.CASCADE)
     tags = models.ManyToManyField(TagsGame, verbose_name='Теги', blank=True)
     title = models.CharField(max_length=64, verbose_name='Название')
-    slug = models.SlugField(unique=True, blank=True)
-    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка')
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка', blank=True)
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     iframe = models.URLField(verbose_name='Ссылка на IFrame')
     is_release = models.BooleanField(default=False, verbose_name='Публичный доступ')
     author = models.ForeignKey('CreatorGame', verbose_name='Автор', on_delete=models.CASCADE)
-    company = models.ForeignKey('CreatorCompany', verbose_name='Компания', on_delete=models.CASCADE, blank=True)
+    company = models.ForeignKey('CreatorCompany', verbose_name='Компания', on_delete=models.CASCADE, blank=True,
+                                null=True)
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
 
     # rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
@@ -52,16 +56,13 @@ class Game(models.Model):
     def __str__(self):
         return self.title
 
-    def image_url(self):
-        return '/' + self.image.url
-
-    def save(self, *args, **kwargs):
-        image = self.image
-        img = Image.open(image)
-        width_size, height_size = self.VALID_RESOLUTION
-        if img.height != height_size or img.width != width_size:
-            raise InvalidResolutionErrorException('Разрешение изображения не допустимо!')
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     image = self.image
+    #     img = Image.open(image)
+    #     width_size, height_size = self.VALID_RESOLUTION
+    #     if img.height != height_size or img.width != width_size:
+    #         raise InvalidResolutionErrorException('Разрешение изображения не допустимо!')
+    #     super().save(*args, **kwargs)
 
 
 # class ScoreBorder(models.Model):
