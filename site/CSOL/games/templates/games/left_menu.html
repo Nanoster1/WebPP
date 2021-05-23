@@ -1,0 +1,33 @@
+<div class="col-md-2 left-feild">
+    <div class="be-vidget">
+        <form action="./" class="input-search">
+            <input type="text" required="" placeholder="Поиск">
+                <i class="fa fa-search"></i>
+                <input type="submit" value="">
+        </form>
+    </div>
+    <div class="be-vidget">
+        <h3 class="letf-menu-article">Категории</h3>
+        <div class="creative_filds_block">
+            <div class="ul">
+                {% for category in categories %}
+                <a href="{% url 'games:game_category' slug=category.slug %}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+<!--    <div class="be-vidget">-->
+<!--        <h3 class="letf-menu-article">Теги</h3>-->
+<!--        <div class="tags_block clearfix">-->
+<!--            <ul>-->
+<!--                <li><a href="blog-detail-2.html">HTML5</a></li>-->
+<!--                <li><a href="blog-detail-2.html">Unity</a></li>-->
+<!--                <li><a href="blog-detail-2.html">Мобильные</a></li>-->
+<!--                <li><a href="blog-detail-2.html">Для мальчиков</a></li>-->
+<!--                <li><a href="blog-detail-2.html">Для девочек</a></li>-->
+<!--                <li><a href="blog-detail-2.html">18+</a></li>-->
+<!--                <li><a href="blog-detail-2.html">От CSOL</a></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>

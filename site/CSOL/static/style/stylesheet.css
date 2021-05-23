@@ -28,7 +28,7 @@
 
 :-ms-input-placeholder { /* Internet Explorer 10+ */ color: inherit !important; }
 
-#content-block *:last-child { margin-bottom: 0; }
+/*#content-block *:last-child { margin-bottom: 0; }*/
 
 body { margin: 0; padding: 0; font-family: 'Conv_helveticaneuecyr-roman', sans-serif; }
 
@@ -1551,22 +1551,22 @@ display: inline-block; float: none; margin: 0 10px;}
 
 .form-checkbox.style-2 > input:checked + .check:before { content: ''; display: block; width: 8px; height: 8px; position: absolute; top: 50%; left: 50%; margin-top: -4px; margin-left: -4px; background: #4a82d6; border-radius: 8px; }
 
-/*alerts*/
-.alert { position: relative; font-size: 13px; line-height: 22px; color: #7a8192; padding: 21px 21px 21px 60px; background: #f6f6f7; border: 1px solid #edeff2; margin-bottom: 20px; border-radius: 3px; }
+/*!*alerts*!*/
+/*.alert { position: relative; font-size: 13px; line-height: 22px; color: #7a8192; padding: 21px 21px 21px 60px; background: #f6f6f7; border: 1px solid #edeff2; margin-bottom: 20px; border-radius: 3px; }*/
 
-.alert .close { position: absolute; top: 21px; left: 21px; width: 24px; height: 24px; font-size: 11px; background: #0d58c8; color: #fff; opacity: 1; border-radius: 3px; }
+/*.alert .close { position: absolute; top: 21px; left: 21px; width: 24px; height: 24px; font-size: 11px; background: #0d58c8; color: #fff; opacity: 1; border-radius: 3px; }*/
 
-.alert .alert-title { font-size: 14px; line-height: 18px; font-family: 'Conv_helveticaneuecyr-bold'; color: #383b43; margin-bottom: 10px; }
+/*.alert .alert-title { font-size: 14px; line-height: 18px; font-family: 'Conv_helveticaneuecyr-bold'; color: #383b43; margin-bottom: 10px; }*/
 
-.alert.style-2 { background: #0d58c8; color: #8ba1dd; }
+/*.alert.style-2 { background: #0d58c8; color: #8ba1dd; }*/
 
-.alert.style-2 .close { background: #fff; color: #5b5e64; }
+/*.alert.style-2 .close { background: #fff; color: #5b5e64; }*/
 
-.alert.style-2 .alert-title { color: #fff; }
+/*.alert.style-2 .alert-title { color: #fff; }*/
 
-.alert.style-3 { background: #383b43; color: #b4b7c1; }
+/*.alert.style-3 { background: #383b43; color: #b4b7c1; }*/
 
-.alert.style-3 .alert-title { color: #fff; }
+/*.alert.style-3 .alert-title { color: #fff; }*/
 
 /*accordion*/
 .accordion.style-1 { border: 1px solid #edeff2; border-radius: 2px; }
