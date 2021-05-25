@@ -18,8 +18,8 @@
                                 <a href="{% url 'games:game_detail' slug=game.slug %}" class="be-post-title">{{ game.title }}</a>
 
                                 <div class="author-post">
-                                    <img src="{% static 'favicon.svg' %}" alt="" class="ava-author">
-                                    <span>by <a href="{% url 'games:game_detail' slug=game.slug %}">{{ game.author }}</a></span>
+                                    <img src="/media/{{ game.author.profile.photo }}" alt="" class="ava-author">
+                                    <span>by <a href="#">{{ game.author }}</a></span>
                                 </div>
 
                             </div>

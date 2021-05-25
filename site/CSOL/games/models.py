@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import get_user_model
+from accounts.models import Profile
 from django.urls import reverse
 
 User = get_user_model()
@@ -49,12 +50,17 @@ class Game(models.Model):
     company = models.ForeignKey('CreatorCompany', verbose_name='Компания', on_delete=models.CASCADE, blank=True,
                                 null=True)
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+    user_views = models.IntegerField(default=0, verbose_name='Количество просмотров')
 
     # rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
     # is_company = models.CharField(max_length=30)
 
     def __str__(self):
         return self.title
+
+    def add_view_user(self, *args, **kwargs):
+        self.user_views += 1
+        super().save(*args, **kwargs)
 
     # def save(self, *args, **kwargs):
     #     image = self.image
@@ -74,12 +80,12 @@ class Game(models.Model):
 #         return f"Player: {self.player} | Scores: {self.score}"
 
 class CreatorGame(models.Model):
-    author = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, verbose_name='Автор', on_delete=models.CASCADE)
     company = models.ManyToManyField('CreatorCompany', verbose_name='Компания', blank=True)
     rating = models.IntegerField(default=0, verbose_name='Рейтинг')
 
     def __str__(self):
-        return self.author.username
+        return self.profile.user.username
 
 
 class CreatorCompany(models.Model):
@@ -102,3 +108,11 @@ class CreatorCompany(models.Model):
         if img.height != height_size or img.width != width_size:
             raise InvalidResolutionErrorException('Разрешение изображения не допустимо!')
         super().save(*args, **kwargs)
+
+
+class FavoriteGames(models.Model):
+    profile = models.ForeignKey(Profile, verbose_name='Пользователь', on_delete=models.CASCADE)
+    games = models.ManyToManyField(Game, verbose_name='Игры', blank=True)
+
+    def __str__(self):
+        return "Любимые игры: {}".format(self.profile.user.username)
