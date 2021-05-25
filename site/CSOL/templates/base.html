@@ -36,7 +36,7 @@
 									<a class="btn color-1 size-2 hover-2" href="{% url 'admin:index' %}">Админ панель</a>
 								{% endif %}
 								<div class="be-drop-down login-user-down">
-									<img class="login-user" src="{% static 'favicon.svg' %}" alt="" width="40">
+									<img class="login-user" src="/media/{{ user.profile.photo}}" alt="" width="40">
 									<span class="be-dropdown-content">{{ user.username }}</span>
 									<ul class="drop-down-list">
 										<li><a href="#">Профиль</a></li>
@@ -59,7 +59,7 @@
 							<li><a href="{% url 'games:game_list_all' %}">Игры</a></li>
 							<li><a href="#">Приложения</a></li>
 							<li><a href="{% url 'games:game_news' %}">Новое</a></li>
-							<li><a href="#">Популярное</a></li>
+							<li><a href="{% url 'games:game_popular' %}">Популярное</a></li>
 							<li><a href="#" >О сайте</a><i class="fa fa-angle-down"></i>
 								<ul style="background-color: #39414E">
 									<li><a href="#">Обновления</a></li>

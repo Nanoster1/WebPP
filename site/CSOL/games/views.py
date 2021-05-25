@@ -11,6 +11,7 @@ class GameDetailView(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        Game.objects.get(slug=self.kwargs['slug']).add_view_user()
         context['title'] = '{} | CSOL'.format(context['object'].title)
         return context
 
@@ -45,3 +46,9 @@ class GameNewListViews(GameListViews):
 
     def get_queryset(self):
         return Game.objects.all().order_by('-date_added')
+
+
+class GamePopularListViews(GameListViews):
+
+    def get_queryset(self):
+        return Game.objects.all().order_by('-user_views')
