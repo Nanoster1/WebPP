@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br> <!-- УСТРАНИТЬ -->
+<div class="container-fluid custom-container">
+    <div class="row">
+        {% include "games/left_menu.html" %}
+        <div class="col-md-10">
+            <div class="row _post-container_">
+                {% if games_list %}
+                    {% for game in games_list %}
+                        <div class="custom-column-5">
+                            <div class="be-post">
+                                <a href="{% url 'games:game_detail' slug=game.slug %}" class="be-img-block">
+                                <img src="/media/{{ game.image }}" alt="omg">
+                                </a>
+                                <a href="{% url 'games:game_detail' slug=game.slug %}" class="be-post-title">{{ game.title }}</a>
+
+                                <div class="author-post">
+                                    <img src="/media/{{ game.author.profile.photo }}" alt="" class="ava-author">
+                                    <span>by <a href="{% url 'accounts:profile' game.author.id %}">{{ game.author }}</a></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-info" role="alert">
+                        Список игр отсуствует
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

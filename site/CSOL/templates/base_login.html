@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <title>{{ title }}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="{% static 'favicon.svg' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'style/loginSp.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'style/login.css' %}">
+        <link rel="stylesheet" href="{% static 'style/LogInStyle.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body background="{% static 'img/background.jpg' %}">
+    <video autoplay loop muted class="bgvideo" id="bgvideo">
+        <source src="{% static 'img/background.mp4' %}" type="video/mp4">
+        <source src="{% static 'img/background.webm' %}" type="video/webm">
+    </video>
+        <div class="overlay">
+            <div>
+                <div class="Main-div-center">
+                    <div class="img-center div-center">
+                        <a href="{% url 'home' %}"><img src="{% static 'img/logo.png'%}"></a>
+                    </div>
+
+                        <div class="container-login100">
+                            <div class="p-b-20 div-center max-size">
+                                {% block content %}
+                                {% endblock %}
+                            </div>
+                        </div>
+
+                    <div id="dropDownSelect1"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

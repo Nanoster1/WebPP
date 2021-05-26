@@ -1,0 +1,22 @@
+.footer-merge
+{
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.image-footer
+{
+    margin-right: 10%;
+}
+img.be_logo
+{
+    margin-left: -15%;
+}
+.footer-block-merge
+{
+    margin-left: 0;
+}
+.margin-image
+{
+    margin-bottom: 14px;
+}

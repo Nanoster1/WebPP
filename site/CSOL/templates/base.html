@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load static %}
+		<title>{{ title }}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="{% static 'favicon.svg' %}">
+		<link rel="stylesheet" href="{% static 'style/canvastyle.css' %}">
+		<link rel="stylesheet" href="{% static 'style/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{% static 'style/icon.css' %}">
+		<link rel="stylesheet" href="{% static 'style/idangerous.swiper.css' %}">
+		<link rel="stylesheet" href="{% static 'style/stylesheet.css' %}">
+		{% block style %}
+		{% endblock %}
+
+	</head>
+	<body {% if user.is_authenticated %}class="page-login"{% endif %}>
+		<header>
+			<div class="container-fluid custom-container">
+				<div class="row no_row row-header">
+					<div class="brand-be">
+						<a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="logo" class="be_logo"></a>
+					</div>
+					<div class="login-header-block">
+						<div class="login_block">
+							{% if user.is_authenticated %}
+								{% if user.is_staff %}
+									<a class="btn color-1 size-2 hover-2" href="{% url 'admin:index' %}">Админ панель</a>
+								{% endif %}
+								<div class="be-drop-down login-user-down">
+									<img class="login-user" src="/media/{{ user.profile.photo}}" alt="" width="40">
+									<span class="be-dropdown-content">{{ user.username }}</span>
+									<ul class="drop-down-list">
+										<li><a href="{% url 'accounts:profile' user.id %}">Профиль</a></li>
+										<li><a href="#">Сообщения</a></li>
+										<li><a href="#">Друзья</a></li>
+										<li><a href="#">Избранное</a></li>
+										<li><a href="{% url 'accounts:logout' %}">Выйти</a></li>
+									</ul>
+								</div>
+							{% else %}
+								<a class="btn-login btn color-1 size-2 hover-2" href="{% url 'accounts:login' %}"><i class="fa fa-user"></i>Войти</a>
+							{% endif %}
+						</div>
+					</div>
+					<div class="header-menu-block">
+						<button class="cmn-toggle-switch cmn-toggle-switch__htx">
+							<span></span>
+						</button>
+						<ul class="header-menu" id="one">
+							<li><a href="{% url 'games:game_list_all' %}">Игры</a></li>
+							<li><a href="#">Приложения</a></li>
+							<li><a href="{% url 'games:game_news' %}">Новое</a></li>
+							<li><a href="{% url 'games:game_popular' %}">Популярное</a></li>
+							<li><a href="#" >О сайте</a><i class="fa fa-angle-down"></i>
+								<ul style="background-color: #39414E">
+									<li><a href="#">Обновления</a></li>
+									<li><a href="#">Контакты</a></li>
+									<li><a href="#">Разработчикам</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div id="content-block">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		<footer>
+			<div class="footer-main">
+				<div class="container-fluid custom-container">
+					<div class="row">
+						<div class="col-md-3 col-xl-4">
+							<div class="footer-block">
+								<h1 class="footer-title">О нас</h1>
+								<p>CSOL - платформа, позволяющая играть на любых платформах в нетребовательные веб-игры. Главной особенностью является то, что нет необходимости дополнительно устанавливать вспомогательные программы. Все происходит прямо на сайте. API сайта позволяет разарботчикам более тесно взаимодействовать пользователям, давая все необходимые инструменты для этого.</p>
+								<ul class="soc_buttons">
+									<li><a href=""><img class="fa" src="{% static 'img/vk.svg' %}"></a></li>
+									<li><a href=""><img class="fa" src="{% static 'img/instagram.svg' %}"></a></li>
+									<li><a href=""><img class="fa" src="{% static 'img/telegram.svg' %}"></a></li>
+									<li><a href=""><img class="fa" src="{% static 'img/discord.svg' %}"></a></li>
+									<li><a href=""><img class="fa" src="{% static 'img/github.svg' %}"></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-xl-2">
+							<div class="footer-block">
+								<h1 class="footer-title">Пользователям</h1>
+								<div class="row footer-list-footer">
+									<div class="col-md-6">
+										<ul class="link-list">
+											<li><a href="">Конфиденциальность</a></li>
+											<li><a href="">Условия Использования</a></li>
+											<li><a href="">Контакты</a></li>
+											<li><a href="">Связаться с нами</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-xl-2">
+							<div class="footer-block">
+								<h1 class="footer-title">Разработчикам</h1>
+								<div class="row footer-list-footer">
+									<div class="col-md-6">
+										<ul class="link-list">
+											<li><a href="">Iframe</a></li>
+											<li><a href="">Инструкция по загрузке</a></li>
+											<li><a href="">Рекомендации</a></li>
+											<li><a href="">Правила</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="footer-block">
+								<div class="soc-activity">
+									<img src="{% static 'img/logo.png' %}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="container-fluid custom-container">
+					<div class="col-md-12 footer-end clearfix">
+						<div class="right">
+							<span class="copy">© 2021. Права не защищены и не охраняются законом.</span>
+							<span class="created">Создано командой <span class="white"><a href="">CSOL</a></span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		{% block script %}
+		{% endblock %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="{% static 'script/bootstrap.min.js' %}"></script>
+		<script src="{% static 'script/idangerous.swiper.min.js' %}"></script>
+		<script src="{% static 'script/global.js' %}"></script>
+	</body>
+</html>

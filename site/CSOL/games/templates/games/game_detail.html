@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container be-detail-container">
+    <h2 class="content-title">{{ game.title }}</h2>
+    <div class="row">
+        <div class="col-xs-12 col-sm-9">
+            <iframe src="{{ game.iframe }}" width="100%" height="700" scrolling="no" allowfullscreen="true" border="0" frameborder="0"></iframe>
+            <div class="info-block clearfix">
+                <div class="be-large-post-align">
+                    <div>
+                        <span><i class="fa fa-user"></i>Добавил: <a href="{% url 'accounts:profile' game.author.id %}">{{ game.author.profile }}</a></span>
+                        {% if game.company %}<span><i class="fa fa-user"></i>Компания: <a href="#">{{ game.company }}</a></span>{% endif %}
+                        <span><i class="fa fa-eye"></i>{{ game.user_views }}</span>
+                    </div>
+                   <div class="button-like">
+                       <a class="btn font-wight"><i class="fa fa-thumbs-up"></i></a>
+                       <span class="fa text-like font-wight">{{likes}}</span>
+                       <a class="btn font-wight"><i class="fa fa-thumbs-down"></i></a>
+                       <span class="fa text-like font-wight">{{dislikes}}</span>
+                   </div>
+                </div>
+            </div>
+            <div class="be-comment-block">
+                <h1 class="comments-title">Комментарии ({{ comments.count }})</h1>
+                {% for comment in comments %}
+                    <a name="comment-{{ comment.id }}"></a>
+                    <div class="be-comment" id="{{ comment.id }}">
+                        <div class="be-img-comment">
+                            <a href="blog-detail-2.html">
+                                <img src="/media/{{ comment.author_id.profile.photo}}" alt="" class="be-ava-comment">
+                            </a>
+                        </div>
+                        <div class="be-comment-content">
+
+                                <span class="be-comment-name">
+                                    <a href="{% url 'accounts:profile' comment.author_id.id %}">{{ comment.author_id.profile.full_name}}</a>
+                                    </span>
+                                <span class="be-comment-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    {{ comment.pub_date }}
+                                </span>
+
+                            <p class="be-comment-text">{{ comment.content|safe }}</p>
+                            {% if form %}<a class="btn btn-default btn-xs pull-right" onclick="return show_comments_form({{ comment.id }})">
+                                Ответить
+                            </a>{% endif %}
+
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if form %}
+                <h3 id="write_comment"><a onclick="return show_comments_form('write_comment')">Написать комментарий</a></h3>
+                <form id="comment_form" class="form-block" action="{% url 'games:add_comment' game.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                            {{ form }}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Комментировать</button>
+                    </div>
+                </form>
+                {% else %}
+                    <div class="panel panel-warning">
+                        <div class="panel-body">
+                            Чтобы оставить комментарий - авторизируйтесь на сайте!
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+            <div class="be-vidget info-block clearfix">
+                <h3 class="letf-menu-article">
+                    Теги
+                </h3>
+                {% if game.get_tags_all %}
+                <div class="tags_block clearfix">
+                    <ul>
+                        {% for tag in game.get_tags_all %}
+                        <li><a href="#">{{ tag.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% block script %}
+<script>
+    function show_comments_form(parent_comment_id)
+    {
+        if (parent_comment_id == 'write_comment')
+        {
+            $("#id_parent_comment").val('')
+        }
+        else
+        {
+            $("#id_parent_comment").val(parent_comment_id);
+        }
+        $("#comment_form").insertAfter("#" + parent_comment_id);
+    }
+</script>
+{% endblock %}
+{% endblock %}
