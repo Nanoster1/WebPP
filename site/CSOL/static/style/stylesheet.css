@@ -2306,6 +2306,11 @@ transition: all ease-out 0.3s;}
 {
   text-align: right;
 }
-.fa-user:before {
-  content: "\f007";
+.text-like
+{
+  text-align: center;
+}
+.font-wight
+{
+  font-size: 16px;
 }
