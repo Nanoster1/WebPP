@@ -23,7 +23,6 @@ class GameDetailView(DetailView):
         user = auth.get_user(self.request)
         context['comments'] = context['object'].comment_set.all()
         # .order_by('path')
-        print(context['comments'])
         if user.is_authenticated:
             context['form'] = self.comment_form
         context['title'] = '{} | CSOL'.format(context['object'].title)
