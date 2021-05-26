@@ -65,3 +65,22 @@ def register(request):
 def logout(request):
     user_logout(request)
     return HttpResponseRedirect(reverse('home'))
+
+
+def profile(request, user_id):
+    template = 'accounts/profile.html'
+    title = 'Мой профиль | CSOL'
+
+    context = {
+        'title': title,
+        'user_id': user_id,
+    }
+    return render(request, template, context)
+
+
+def profile_edit(request):
+    template = 'accounts/profile_edit.html'
+    title = 'Мой профиль | CSOL'
+
+    context = {'title': title}
+    return render(request, template, context)

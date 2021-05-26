@@ -1,4 +1,5 @@
 from PIL import Image
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -62,6 +63,12 @@ class Game(models.Model):
         self.user_views += 1
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('games:game_detail', args=[self.slug])
+
+    def get_tags_all(self):
+        return self.tags.all()
+
     # def save(self, *args, **kwargs):
     #     image = self.image
     #     img = Image.open(image)
@@ -111,8 +118,37 @@ class CreatorCompany(models.Model):
 
 
 class FavoriteGames(models.Model):
-    profile = models.ForeignKey(Profile, verbose_name='Пользователь', on_delete=models.CASCADE)
+    profile = models.OneToOneField(Profile, verbose_name='Пользователь', on_delete=models.CASCADE)
     games = models.ManyToManyField(Game, verbose_name='Игры', blank=True)
 
     def __str__(self):
         return "Любимые игры: {}".format(self.profile.user.username)
+
+    def get_games_all(self):
+        return self.games.all()
+
+
+class Comment(models.Model):
+    class Meta:
+        db_table = "comments"
+
+    # path = ArrayField(models.IntegerField())
+    game_id = models.ForeignKey(Game, on_delete=models.CASCADE)
+    author_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(verbose_name='Комментарий')
+    pub_date = models.DateTimeField(verbose_name='Дата комментария', auto_now_add=True)
+
+    def __str__(self):
+        return self.content[0:200]
+
+    def get_offset(self):
+        level = len(self.path) - 1
+        if level > 5:
+            level = 5
+        return level
+
+    def get_col(self):
+        level = len(self.path) - 1
+        if level > 5:
+            level = 5
+        return 12 - level

@@ -15,12 +15,6 @@
 		{% block style %}
 		{% endblock %}
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="{% static 'script/bootstrap.min.js' %}"></script>
-		<script src="{% static 'script/idangerous.swiper.min.js' %}"></script>
-		<script src="{% static 'script/global.js' %}"></script>
-		{% block script %}
-		{% endblock %}
 	</head>
 	<body {% if user.is_authenticated %}class="page-login"{% endif %}>
 		<header>
@@ -39,7 +33,7 @@
 									<img class="login-user" src="/media/{{ user.profile.photo}}" alt="" width="40">
 									<span class="be-dropdown-content">{{ user.username }}</span>
 									<ul class="drop-down-list">
-										<li><a href="#">Профиль</a></li>
+										<li><a href="{% url 'accounts:profile' user.id %}">Профиль</a></li>
 										<li><a href="#">Сообщения</a></li>
 										<li><a href="#">Друзья</a></li>
 										<li><a href="#">Избранное</a></li>
@@ -146,5 +140,11 @@
 				</div>
 			</div>
 		</footer>
+		{% block script %}
+		{% endblock %}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="{% static 'script/bootstrap.min.js' %}"></script>
+		<script src="{% static 'script/idangerous.swiper.min.js' %}"></script>
+		<script src="{% static 'script/global.js' %}"></script>
 	</body>
 </html>
