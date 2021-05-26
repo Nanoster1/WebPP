@@ -72,11 +72,11 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-3">
-            {% if game.get_tags_all %}
             <div class="be-vidget info-block clearfix">
                 <h3 class="letf-menu-article">
                     Теги
                 </h3>
+                {% if game.get_tags_all %}
                 <div class="tags_block clearfix">
                     <ul>
                         {% for tag in game.get_tags_all %}
@@ -84,8 +84,8 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </div>
 </div>

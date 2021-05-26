@@ -43,7 +43,7 @@ class Game(models.Model):
     tags = models.ManyToManyField(TagsGame, verbose_name='Теги', blank=True)
     title = models.CharField(max_length=64, verbose_name='Название')
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка', blank=True, default='site/no_photo.png')
+    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка', blank=True, default='site/no_photo_game.jpg')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     iframe = models.URLField(verbose_name='Ссылка на IFrame')
     is_release = models.BooleanField(default=False, verbose_name='Публичный доступ')
