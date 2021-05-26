@@ -83,7 +83,6 @@ class ProfileDetailView(DetailView):
 
     def get_object(self):
         _user = get_object_or_404(User, pk=int(self.kwargs['user_id']))
-        print(_user)
         return get_object_or_404(Profile, user=_user)
 
 
