@@ -2302,3 +2302,10 @@ transition: all ease-out 0.3s;}
     box-shadow: 0 0 20px rgba(0,0,0,0.7);}
 
 }
+.button-like
+{
+  text-align: right;
+}
+.fa-user:before {
+  content: "\f007";
+}
