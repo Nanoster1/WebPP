@@ -8,9 +8,17 @@
             <iframe src="{{ game.iframe }}" width="100%" height="700" scrolling="no" allowfullscreen="true" border="0" frameborder="0"></iframe>
             <div class="info-block clearfix">
                 <div class="be-large-post-align">
-                    <span><i class="fa fa-user"></i>Добавил: <a href="{% url 'accounts:profile' game.author.id %}">{{ game.author.profile }}</a></span>
-                    {% if game.company %}<span><i class="fa fa-user"></i>Компания: <a href="#">{{ game.company }}</a></span>{% endif %}
-                    <span><i class="fa fa-eye"></i>{{ game.user_views }}</span>
+                    <div>
+                        <span><i class="fa fa-user"></i>Добавил: <a href="{% url 'accounts:profile' game.author.id %}">{{ game.author.profile }}</a></span>
+                        {% if game.company %}<span><i class="fa fa-user"></i>Компания: <a href="#">{{ game.company }}</a></span>{% endif %}
+                        <span><i class="fa fa-eye"></i>{{ game.user_views }}</span>
+                    </div>
+                   <div class="button-like">
+                       <a class="btn font-wight"><i class="fa fa-thumbs-up"></i></a>
+                       <span class="fa text-like font-wight">{{likes}}</span>
+                       <a class="btn font-wight"><i class="fa fa-thumbs-down"></i></a>
+                       <span class="fa text-like font-wight">{{dislikes}}</span>
+                   </div>
                 </div>
             </div>
             <div class="be-comment-block">
