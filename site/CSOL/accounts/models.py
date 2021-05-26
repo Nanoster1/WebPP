@@ -15,6 +15,13 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    @property
+    def full_name(self):
+        response = "{} {}".format(self.user.first_name, self.user.last_name)
+        if not response:
+            return self.user.username
+        return "{} {}".format(self.user.first_name, self.user.last_name)
+
 
 class Friend(models.Model):
     friends = models.ManyToManyField(Profile, default='users', blank=True, related_name='users', verbose_name='Друзья')

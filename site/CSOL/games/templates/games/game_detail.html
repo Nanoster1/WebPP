@@ -5,115 +5,96 @@
     <h2 class="content-title">{{ game.title }}</h2>
     <div class="row">
         <div class="col-xs-12 col-sm-9">
+            <iframe src="{{ game.iframe }}" width="100%" height="700" scrolling="no" allowfullscreen="true" border="0" frameborder="0"></iframe>
             <div class="info-block clearfix">
                 <div class="be-large-post-align">
-                    <span><i class="fa fa-thumbs-o-up"></i> 253</span>
+                    <span><i class="fa fa-user"></i>Добавил: <a href="#">{{ game.author.profile }}</a></span>
+                    {% if game.company %}<span><i class="fa fa-user"></i>Компания: <a href="#">{{ game.company }}</a></span>{% endif %}
                     <span><i class="fa fa-eye"></i>{{ game.user_views }}</span>
-                    <span><i class="fa fa-comment-o"></i> 50</span>
                 </div>
             </div>
-            <iframe src="{{ game.iframe }}" width="100%" height="700" scrolling="no" allowfullscreen="true" border="0" frameborder="0"></iframe>
             <div class="be-comment-block">
-                <h1 class="comments-title">Comments (3)</h1>
-                <div class="be-comment">
-                    <div class="be-img-comment">
-                        <a href="blog-detail-2.html">
-                            <img src="img/c1.png" alt="" class="be-ava-comment">
-                        </a>
-                    </div>
-                    <div class="be-comment-content">
+                <h1 class="comments-title">Комментарии ({{ comments.count }})</h1>
+                {% for comment in comments %}
+                    <a name="comment-{{ comment.id }}"></a>
+                    <div class="be-comment" id="{{ comment.id }}">
+                        <div class="be-img-comment">
+                            <a href="blog-detail-2.html">
+                                <img src="/media/{{ comment.author_id.profile.photo}}" alt="" class="be-ava-comment">
+                            </a>
+                        </div>
+                        <div class="be-comment-content">
 
-                            <span class="be-comment-name">
-                                <a href="blog-detail-2.html">Ravi Sah</a>
+                                <span class="be-comment-name">
+                                    <a href="blog-detail-2.html">{{ comment.author_id.profile.full_name}}</a>
+                                    </span>
+                                <span class="be-comment-time">
+                                    <i class="fa fa-clock-o"></i>
+                                    {{ comment.pub_date }}
                                 </span>
-                            <span class="be-comment-time">
-                                <i class="fa fa-clock-o"></i>
-                                May 27, 2015 at 3:14am
-                            </span>
 
-                        <p class="be-comment-text">
-                            Pellentesque gravida tristique ultrices.
-                            Sed blandit varius mauris, vel volutpat urna hendrerit id.
-                            Curabitur rutrum dolor gravida turpis tristique efficitur.
-                        </p>
+                            <p class="be-comment-text">{{ comment.content|safe }}</p>
+                            {% if form %}<a class="btn btn-default btn-xs pull-right" onclick="return show_comments_form({{ comment.id }})">
+                                Ответить
+                            </a>{% endif %}
+
+                        </div>
                     </div>
-                </div>
-                <div class="be-comment">
-                    <div class="be-img-comment">
-                        <a href="blog-detail-2.html">
-                            <img src="img/c4.png" alt="" class="be-ava-comment">
-                        </a>
-                    </div>
-                    <div class="be-comment-content">
-                        <span class="be-comment-name">
-                            <a href="blog-detail-2.html">Phoenix, the Creative Studio</a>
-                        </span>
-                        <span class="be-comment-time">
-                            <i class="fa fa-clock-o"></i>
-                            May 27, 2015 at 3:14am
-                        </span>
-                        <p class="be-comment-text">
-                            Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo. Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant. Proin ut ornare lectus, vel eleifend est. Fusce hendrerit dui in turpis tristique blandit.
-                        </p>
-                    </div>
-                </div>
-                <div class="be-comment">
-                    <div class="be-img-comment">
-                        <a href="blog-detail-2.html">
-                            <img src="img/c5.png" alt="" class="be-ava-comment">
-                        </a>
-                    </div>
-                    <div class="be-comment-content">
-                        <span class="be-comment-name">
-                            <a href="blog-detail-2.html">Cüneyt ŞEN</a>
-                        </span>
-                        <span class="be-comment-time">
-                            <i class="fa fa-clock-o"></i>
-                            May 27, 2015 at 3:14am
-                        </span>
-                        <p class="be-comment-text">
-                            Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
-                        </p>
-                    </div>
-                </div>
-                <form class="form-block">
+                {% endfor %}
+                {% if form %}
+                <h3 id="write_comment"><a onclick="return show_comments_form('write_comment')">Написать комментарий</a></h3>
+                <form id="comment_form" class="form-block" action="{% url 'games:add_comment' game.id %}" method="post">
+                    {% csrf_token %}
                     <div class="row">
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="form-group fl_icon">
-                                <div class="icon"><i class="fa fa-user"></i></div>
-                                <input class="form-input" type="text" placeholder="Your name">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 fl_icon">
-                            <div class="form-group fl_icon">
-                                <div class="icon"><i class="fa fa-envelope-o"></i></div>
-                                <input class="form-input" type="text" placeholder="Your email">
-                            </div>
-                        </div>
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <textarea class="form-input" required="" placeholder="Your text"></textarea>
+                            {{ form }}
                             </div>
                         </div>
-                        <a class="btn color-1 size-2 hover-1 pull-right">submit</a>
+                        <button type="submit" class="btn btn-primary">Комментировать</button>
                     </div>
                 </form>
+                {% else %}
+                    <div class="panel panel-warning">
+                        <div class="panel-body">
+                            Чтобы оставить комментарий - авторизируйтесь на сайте!
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-xs-12 col-sm-3">
-            <div class="be-vidget">
+            {% if game.get_tags_all %}
+            <div class="be-vidget info-block clearfix">
                 <h3 class="letf-menu-article">
-                    Popular Tags
+                    Теги
                 </h3>
                 <div class="tags_block clearfix">
                     <ul>
-                        <li><a href="#">art</a></li>
-                        <li><a href="#">art</a></li>
-                        <li><a href="#">art</a></li>
+                        {% for tag in game.get_tags_all %}
+                        <li><a href="#">{{ tag.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
+{% block script %}
+<script>
+    function show_comments_form(parent_comment_id)
+    {
+        if (parent_comment_id == 'write_comment')
+        {
+            $("#id_parent_comment").val('')
+        }
+        else
+        {
+            $("#id_parent_comment").val(parent_comment_id);
+        }
+        $("#comment_form").insertAfter("#" + parent_comment_id);
+    }
+</script>
+{% endblock %}
 {% endblock %}

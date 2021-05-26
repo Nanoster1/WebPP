@@ -583,7 +583,7 @@ a.be-post-title:hover { color: #0D58C8; }
 
 .info-block-label { font-size: 14px; line-height: 18px; font-family: 'Conv_helveticaneuecyr-bold'; color: #383b43; }
 
-.info-block .be-large-post-align { margin: 0px 50px; }
+.info-block .be-large-post-align { margin: auto; }
 
 .info-block .fa { font-size: 13px; }
 
