@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=32, blank=True, null=True, verbose_name='Никнейм')
     date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
-    photo = models.ImageField(upload_to='users/', blank=True, verbose_name='Фотография')
+    photo = models.ImageField(upload_to='users/', blank=True, verbose_name='Фотография', default='site/no_photo.png')
     site = models.URLField(blank=True, null=True, verbose_name='Личный сайт')
     is_first_register = models.BooleanField(default=True, verbose_name='Первый вход')
 
@@ -17,15 +17,15 @@ class Profile(models.Model):
 
     @property
     def full_name(self):
-        response = "{} {}".format(self.user.first_name, self.user.last_name)
-        if not response:
+        if not self.user.first_name or self.user.last_name:
             return self.user.username
-        return "{} {}".format(self.user.first_name, self.user.last_name)
+        response = "{} {}".format(self.user.first_name, self.user.last_name)
+        return response
 
 
 class Friend(models.Model):
     friends = models.ManyToManyField(Profile, default='users', blank=True, related_name='users', verbose_name='Друзья')
-    current_user = models.ForeignKey(Profile, related_name='owner', on_delete=models.CASCADE, null=True, verbose_name='Пользователь')
+    current_user = models.OneToOneField(Profile, related_name='owner', on_delete=models.CASCADE, null=True, verbose_name='Пользователь')
 
     @classmethod
     def make_friend(cls, current_user, new_friend):

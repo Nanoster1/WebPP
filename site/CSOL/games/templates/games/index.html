@@ -19,7 +19,7 @@
 
                                 <div class="author-post">
                                     <img src="/media/{{ game.author.profile.photo }}" alt="" class="ava-author">
-                                    <span>by <a href="#">{{ game.author }}</a></span>
+                                    <span>by <a href="{% url 'accounts:profile' game.author.id %}">{{ game.author }}</a></span>
                                 </div>
 
                             </div>

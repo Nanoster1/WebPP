@@ -2,9 +2,12 @@ from django.contrib.auth import (login as auth_login, authenticate)
 from django.contrib.auth import logout as user_logout
 from django.contrib.auth.models import User
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic import DetailView
+
+from .models import Profile
 
 
 def login(request):
@@ -67,15 +70,21 @@ def logout(request):
     return HttpResponseRedirect(reverse('home'))
 
 
-def profile(request, user_id):
-    template = 'accounts/profile.html'
-    title = 'Мой профиль | CSOL'
+class ProfileDetailView(DetailView):
+    model = Profile
+    context_object_name = 'profile'
+    template_name = 'accounts/profile.html'
 
-    context = {
-        'title': title,
-        'user_id': user_id,
-    }
-    return render(request, template, context)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Профиль {} | CSOL'.format(context['object'])
+        context['user_id'] = self.kwargs['user_id']
+        return context
+
+    def get_object(self):
+        _user = get_object_or_404(User, pk=int(self.kwargs['user_id']))
+        print(_user)
+        return get_object_or_404(Profile, user=_user)
 
 
 def profile_edit(request):
