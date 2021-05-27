@@ -1,6 +1,7 @@
 from django.contrib.auth import (login as auth_login, authenticate)
 from django.contrib.auth import logout as user_logout
 from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
@@ -89,6 +90,36 @@ class ProfileDetailView(DetailView):
 def profile_edit(request):
     template = 'accounts/profile_edit.html'
     title = 'Мой профиль | CSOL'
+
+    if request.method == 'POST':
+        print(request.FILES)
+        _website = request.POST['website']
+        _email = request.POST['email']
+        _lastname = request.POST['last_name']
+        _firstname = request.POST['first_name']
+        _date_birth = request.POST['date_birth']
+        _photo = request.FILES['photo']
+        print(_photo)
+
+        fs = FileSystemStorage()
+        filename = fs.save(_photo.name, _photo)
+        uploaded_file_url = fs.url(filename)
+
+        user = request.user
+        profile = Profile.objects.get(user=user)
+
+        user.last_name = _lastname
+        user.first_name = _firstname
+        user.email = _email
+
+        profile.site = _website
+        profile.photo = uploaded_file_url
+        profile.date_of_birth = _date_birth
+
+        user.save()
+        profile.save()
+
+        return HttpResponseRedirect(reverse('accounts:profile', args=[request.user.id]))
 
     context = {'title': title}
     return render(request, template, context)

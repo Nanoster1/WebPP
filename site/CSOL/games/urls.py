@@ -10,4 +10,5 @@ urlpatterns = [
     path('category/<str:slug>/', GameCategoryListViews.as_view(), name='game_category'),
     path('comment/<int:game_id>/', add_comment, name='add_comment'),
     path('<str:slug>/', GameDetailView.as_view(), name='game_detail'),
+    path('<str:slug>/like/', LikeView.as_view(), name='game_like'),
 ]

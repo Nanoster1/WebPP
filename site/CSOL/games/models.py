@@ -43,7 +43,8 @@ class Game(models.Model):
     tags = models.ManyToManyField(TagsGame, verbose_name='Теги', blank=True)
     title = models.CharField(max_length=64, verbose_name='Название')
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка', blank=True, default='site/no_photo_game.jpg')
+    image = models.ImageField(upload_to='games/images', storage=fs, verbose_name='Иконка', blank=True,
+                              default='site/no_photo_game.jpg')
     description = models.TextField(null=True, blank=True, verbose_name='Описание')
     iframe = models.URLField(verbose_name='Ссылка на IFrame')
     is_release = models.BooleanField(default=False, verbose_name='Публичный доступ')
@@ -101,7 +102,8 @@ class CreatorCompany(models.Model):
 
     name = models.CharField(max_length=64, verbose_name='Название компании')
     owner = models.ForeignKey(CreatorGame, verbose_name='Руководитель', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='games/company', storage=fs, verbose_name='Логотип', default='site/no_photo.png')
+    image = models.ImageField(upload_to='games/company', storage=fs, verbose_name='Логотип',
+                              default='site/no_photo.png')
     slug = models.SlugField(unique=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
 
@@ -152,3 +154,14 @@ class Comment(models.Model):
         if level > 5:
             level = 5
         return 12 - level
+
+
+class GameLike(models.Model):
+    game = models.ForeignKey(Game, blank=False, null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, blank=False, null=False, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('game', 'user',)
+
+    def __str__(self):
+        return self.game.title

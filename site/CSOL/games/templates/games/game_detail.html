@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
 <div class="container be-detail-container">
     <h2 class="content-title">{{ game.title }}</h2>
     <div class="row">
@@ -12,13 +13,9 @@
                         <span><i class="fa fa-user"></i>Добавил: <a href="{% url 'accounts:profile' game.author.id %}">{{ game.author.profile }}</a></span>
                         {% if game.company %}<span><i class="fa fa-user"></i>Компания: <a href="#">{{ game.company }}</a></span>{% endif %}
                         <span><i class="fa fa-eye"></i>{{ game.user_views }}</span>
+                        <span><a class="font-wight" data-game-id="{{ game.id }}"><i class="fa fa-thumbs-up" id="megalike" data-game-id="{{ game.id }}"></i>{{ likes.count }}</a></span>
+                        <span><a class="font-wight"><i class="fa fa-thumbs-down" id="megadislike"></i></a>0</span>
                     </div>
-                   <div class="button-like">
-                       <a class="btn font-wight"><i class="fa fa-thumbs-up"></i></a>
-                       <span class="fa text-like font-wight">{{likes}}</span>
-                       <a class="btn font-wight"><i class="fa fa-thumbs-down"></i></a>
-                       <span class="fa text-like font-wight">{{dislikes}}</span>
-                   </div>
                 </div>
             </div>
             <div class="be-comment-block">
@@ -65,7 +62,7 @@
                 {% else %}
                     <div class="panel panel-warning">
                         <div class="panel-body">
-                            Чтобы оставить комментарий - авторизируйтесь на сайте!
+                            Чтобы оставить комментарий - <a href="{% url 'accounts:login' %}">авторизируйтесь</a> на сайте!
                         </div>
                     </div>
                 {% endif %}
@@ -103,6 +100,64 @@
         }
         $("#comment_form").insertAfter("#" + parent_comment_id);
     }
+</script>
+<script>
+    window.onload = function(){
+        let button1 = document.getElementById("megalike");
+        let button2 = document.getElementById("megadislike");
+        button1.onclick =()=> init3(button1,button2);
+
+        button2.onclick =()=> init4(button1,button2);
+    }
+    function init3(button1,button2)
+    {
+        if(button1!=null&&button2!=null)
+        {
+            if (!(button2.style.color == "rgb(3, 3, 3)"))
+            {
+                if (button1.style.color == "rgb(3, 3, 3)")
+                {
+                    button1.style.color = "rgb(51, 122, 183)";
+
+                    var plant = document.getElementById("megalike");
+                    var game_id = plant.getAttribute('data-game-id');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url 'games:game_like' game.slug %}",
+                        data: {csrfmiddlewaretoken: "{{ csrf_token }}", game_id: game_id}
+                    })
+                    .done(function (response) {
+                        console.log(response)
+                    })
+                }
+                else
+                {
+                    button1.style.color = "rgb(3, 3, 3)";
+                }
+            }
+        }
+        return false;
+    }
+    function init4(button1,button2)
+    {
+        if(button1!=null&&button2!=null)
+        {
+            if(!(button1.style.color == "rgb(3, 3, 3)"))
+            {
+                if(button2.style.color == "rgb(3, 3, 3)")
+                {
+                    button2.style.color = "rgb(51, 122, 183)";
+                }
+                else
+                {
+                    button2.style.color = "rgb(3, 3, 3)";
+                }
+            }
+        }
+        return false;
+    }
+
 </script>
 {% endblock %}
 {% endblock %}
