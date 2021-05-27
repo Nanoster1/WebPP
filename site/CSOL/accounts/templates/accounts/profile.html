@@ -93,11 +93,24 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Полное имя</h6>
+                                    <h6 class="mb-0">Фамилия</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    {% if profile.full_name %}
-                                        {{ profile.full_name }}
+                                    {% if profile.user.last_name %}
+                                        {{ profile.user.last_name }}
+                                    {% else %}
+                                        Отсуствует
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Имя</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {% if profile.user.first_name %}
+                                        {{ profile.user.first_name }}
                                     {% else %}
                                         Отсуствует
                                     {% endif %}
