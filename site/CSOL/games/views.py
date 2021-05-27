@@ -1,13 +1,15 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template.context_processors import csrf
+from django.views import View
 from django.views.decorators.http import require_http_methods
 from django.views.generic import DetailView, ListView
 
 from .forms import CommentForm
-from .models import Game, CategoryGame, Comment
+from .models import Game, CategoryGame, Comment, GameLike
 
 
 class GameDetailView(DetailView):
@@ -22,6 +24,7 @@ class GameDetailView(DetailView):
         context['object'].add_view_user()
         user = auth.get_user(self.request)
         context['comments'] = context['object'].comment_set.all()
+        context['likes'] = context['object'].gamelike_set.all()
         # .order_by('path')
         if user.is_authenticated:
             context['form'] = self.comment_form
@@ -92,3 +95,15 @@ class GamePopularListViews(GameListViews):
 
     def get_queryset(self):
         return Game.objects.all().order_by('-user_views')
+
+
+class LikeView(View):
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        print(request.POST)
+        user = request.user.profile
+        game_id = request.POST['game_id']
+        game = Game.objects.get(id=game_id)
+        user_liked, created = GameLike.objects.get_or_create(game=game, user=user)
+        return JsonResponse({"created": created})
